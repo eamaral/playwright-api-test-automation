@@ -10,27 +10,29 @@ Certifique-se de ter o **Node.js** (versão 16 ou superior) instalado em sua má
 
 1. Clone o repositório:
 
-    ```bash
+````
     git clone https://github.com/eamaral/playwright-api-test-automation.git
-   ```
+````
    
 2.	Entre no diretório do projeto:
 
-    ```bash
+````
    cd playwright-api-test-automation
-   ```
+````
+
 3.	Instale as dependências necessárias:
 
-    ```bash
+````
    npm install
-   ```
+````
+
 ## Execução dos Testes
 
 - Para executar os testes localmente, utilize o seguinte comando:
 
-    ```bash
+````
    npx playwright test
-   ```
+`````
    
 ## Relatórios
 
