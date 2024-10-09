@@ -27,14 +27,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Executa os testes de API
+      # Executa os testes de API e gera o relatório HTML
       - name: Run Playwright Tests
         run: npx playwright test
 
-      # Armazena o relatório de testes como artefato
-      - name: Upload Playwright Test Report
-        if: success() || failure()  # Faz upload independente do sucesso ou falha dos testes
-        uses: actions/upload-artifact@v3
+      # Publica o conteúdo do diretório 'playwright-report' no GitHub Pages
+      - name: Deploy report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: playwright-report  # Nome do artefato
-          path: playwright-report  # Diretório onde o Playwright salva o relatório
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: playwright-report  # Publica o diretório onde o 'index.html' do relatório está
+          keep_files: false  # Remove qualquer arquivo existente na branch gh-pages para evitar conflitos
