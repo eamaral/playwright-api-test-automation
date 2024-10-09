@@ -31,14 +31,11 @@ jobs:
       - name: Run Playwright Tests
         run: npx playwright test
 
-      # Publica o relatório no GitHub Pages
-      - name: Deploy report to GitHub Pages
-        if: success() || failure()  # Executa se os testes passarem ou falharem
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./playwright-report
-
-      # Exibe o link do GitHub Pages
-      - name: Display GitHub Pages URL
-        run: echo "Relatório disponível em: https://eamaral.github.io/playwright-api-test-automation/"
+      # Commit e push do relatório gerado para a branch main
+      - name: Commit and Push Report
+        run: |
+          git config --global user.email "erik.fernandes87@gmail.com"  # E-mail configurado
+          git config --global user.name "Erik"                         # Nome configurado
+          git add playwright-report
+          git commit -m "Adiciona relatório HTML"
+          git push origin main
