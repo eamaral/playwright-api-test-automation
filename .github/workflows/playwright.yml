@@ -31,10 +31,9 @@ jobs:
       - name: Run Playwright Tests
         run: npx playwright test
 
-      # Armazena o relatório de testes como artefato
-      - name: Upload Playwright Test Report
-        if: success() || failure()  # Faz upload independente do sucesso ou falha dos testes
-        uses: actions/upload-artifact@v3
+      # Publica o conteúdo do relatório no GitHub Pages
+      - name: Deploy report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: playwright-report  # Nome do artefato
-          path: playwright-report  # Diretório onde o Playwright salva o relatório
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./playwright-report  # Diretório onde o relatório HTML é salvo
