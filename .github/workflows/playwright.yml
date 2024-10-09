@@ -33,11 +33,11 @@ jobs:
 
       # Publica o relatório no GitHub Pages
       - name: Deploy report to GitHub Pages
-        if: success() || failure()
+        if: success() || failure()  # Executa mesmo se os testes passarem ou falharem
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./playwright-report
+          publish_dir: playwright-report  # O diretório onde o relatório HTML é gerado
 
       # Exibe o link do GitHub Pages no log de execução
       - name: Display GitHub Pages URL
