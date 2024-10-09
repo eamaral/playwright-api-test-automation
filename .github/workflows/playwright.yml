@@ -31,13 +31,13 @@ jobs:
       - name: Run Playwright Tests
         run: npx playwright test
 
-      # Configura o GIT para usar o GITHUB_TOKEN para autenticação e fazer o push
+      # Commit e push do relatório gerado para a branch main
       - name: Commit and Push Report
         run: |
           git config --global user.email "erik.fernandes87@gmail.com"
           git config --global user.name "Erik"
           git add playwright-report
           git commit -m "Adiciona relatório HTML"
-          git push
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/eamaral/playwright-api-test-automation.git main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
