@@ -13,23 +13,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Faz o checkout do repositório
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Configura Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '16'
 
+      # Instala as dependências do projeto
       - name: Install dependencies
         run: npm install
 
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-
+      # Executa os testes de API
       - name: Run Playwright Tests
         run: npx playwright test
 
+      # Armazena o relatório de testes como artefato
       - name: Upload Playwright Test Report
         if: failure() || success()
         uses: actions/upload-artifact@v3
